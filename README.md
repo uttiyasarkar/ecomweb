@@ -1,2 +1,2 @@
 # ecomweb
-E-commerce website
+E-commerce website for selling items.
