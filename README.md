@@ -1,2 +1,3 @@
 # ecomweb
-E-commerce website for selling items. Incoming changes to the overall style.
+E-commerce website for selling items. Incoming changes to the overall style. 
+Maintainer: Uttiya Sarkar
