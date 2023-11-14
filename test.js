@@ -1,80 +1,28 @@
-var cartCount = 0,
-	 buy = $('.btn'),
-	 span = $('.number'),
-	 cart = $('.cart'),
-	 quickview = $('.quickviewContainer'),
-	 quickViewBtn = $('.quickview'),
-	 close = $('.quickviewContainer .close'),
-	 minicart = [],
-	 totalPrice = [],
-	 miniCartPrice;
-
-buy.on('click', addToCart);
-quickViewBtn.on('click', quickView);
-cart.on('click', showMiniCart);
-close.on('click', function(){
-	quickview.removeClass('active');
-});
-
-function quickView() {
-	var description = $(this).parent().find('.description').text(),
-		 header = $(this).parent().find('.header').text(),
-		 price = $(this).find('.price'),
-		 quickViewHeader = $('.quickviewContainer .headline'),
-		 quickViewDescription = $('.quickviewContainer .description');
-	clearTimeout(timeQuick);
-		if(quickview.hasClass('active')){
-			quickview.removeClass('active');
-			var timeQuick = setTimeout(function(){
-				quickview.addClass('active');
-			}, 300);
-		} else{
-			quickview.addClass('active');
-		}
-	
-	quickViewHeader.text(header);
-	quickViewDescription.text(description);
-}
-
-function showMiniCart() {
-	$('.mini').toggleClass('visible');
-}
-
-function addToCart() {
-	var self = $(this),
-		 productName = $(this).parent().find('.header').text(),
-		 miniCartNames = $('.products'),
-		 names = $('.names'),
-		 price = $(this).parent().find('.price').text(),
-		 priceInt = parseInt(price);
-	
-	totalPrice.push(priceInt);
-	miniCartPrice = totalPrice.reduce(function(a,b){  return a+b });
-	$('.miniprice').text('Total amount: ' + miniCartPrice + ",-");
-	minicart.push(productName);
-	lastProduct = minicart[minicart.length - 1];
-	miniCartNames.text('Your cart lines: ');
-	names.append('<p>' + lastProduct + '</p>');
-	
-	cartCount++;
-	span.text(cartCount);
-	clearTimeout(time);
-	if(span.hasClass('update')){
-		span.removeClass('update');
-		span.addClass('updateQuantity');
-		var time = setTimeout(function(){
-			span.removeClass('updateQuantity');
-			span.addClass('update');
-		}, 700);
-	} else{
-		span.addClass('update');
+document.getElementById('range-picker').addEventListener('click', function(e) {
+	var sizeList = document.getElementById('range-picker').children;
+	for (var i = 0; i <= sizeList.length - 1; i++) {
+	  console.log(sizeList[i].classList);
+	  if (sizeList[i].classList.contains('active')) {
+		sizeList[i].classList.remove('active');
+	  }
 	}
-	if (cartCount == 1){
-		cart.toggleClass('icon-basket icon-basket-loaded');
-	}
-	
-	$(this).addClass('ok');
-	var timeOk = setTimeout(function(){
-		self.removeClass('ok');
-	}, 1000);
-}
+	e.target.classList.add('active');
+  })
+  
+  document.getElementById('color-a').addEventListener('click', function() {
+	document.getElementById('color-overlay').style.transform = 'translateX(-0.5px)';
+	document.getElementById('background-element').style.backgroundColor = '#333';
+	document.getElementById('highlight-overlay').style.opacity = '1';
+	document.getElementById('highlight-overlay-mobile').style.opacity = '1';
+	document.getElementById('color-name').innerHTML = "BLACK / 050";
+	document.getElementById('color-name').style.color = '#333'
+  
+  })
+  document.getElementById('color-b').addEventListener('click', function() {
+	document.getElementById('color-overlay').style.transform = 'translateX(45px)';
+	document.getElementById('background-element').style.backgroundColor = '#457';
+	document.getElementById('highlight-overlay').style.opacity = '0';
+	document.getElementById('highlight-overlay-mobile').style.opacity = '0';
+	document.getElementById('color-name').innerHTML = "BLUES / 2V5";
+	document.getElementById('color-name').style.color = '#457'
+  })
